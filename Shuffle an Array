@@ -1,0 +1,33 @@
+import java.util.Random;
+
+class Solution {
+    private int[] array;
+    private int[] original;
+    private Random rand = new Random();
+
+    public Solution(int[] nums) {
+        array = nums;
+        // Keep a copy of the original state for the reset() function
+        original = nums.clone();
+    }
+    
+    /** Resets the array to its original configuration and returns it. */
+    public int[] reset() {
+        array = original.clone();
+        return array;
+    }
+    
+    /** Returns a random shuffling of the array. */
+    public int[] shuffle() {
+        for (int i = 0; i < array.length; i++) {
+            // Pick a random index between current index i and the end of the array
+            int swapIndex = rand.nextInt(array.length - i) + i;
+            
+            // Swap elements
+            int temp = array[i];
+            array[i] = array[swapIndex];
+            array[swapIndex] = temp;
+        }
+        return array;
+    }
+}
