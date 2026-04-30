@@ -1,0 +1,42 @@
+class MinStack {
+    // Helper class to store value and the minimum at that point in the stack
+    private class Node {
+        int val;
+        int min;
+        Node next;
+
+        private Node(int val, int min, Node next) {
+            this.val = val;
+            this.min = min;
+            this.next = next;
+        }
+    }
+
+    private Node head;
+
+    public MinStack() {
+        head = null;
+    }
+    
+    public void push(int val) {
+        if (head == null) {
+            // First node: it is its own minimum
+            head = new Node(val, val, null);
+        } else {
+            // New node: min is the lesser of the current val and the previous min
+            head = new Node(val, Math.min(val, head.min), head);
+        }
+    }
+    
+    public void pop() {
+        head = head.next;
+    }
+    
+    public int top() {
+        return head.val;
+    }
+    
+    public int getMin() {
+        return head.min;
+    }
+}
