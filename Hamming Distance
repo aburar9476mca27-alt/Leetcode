@@ -1,0 +1,16 @@
+class Solution {
+    public int hammingDistance(int x, int y) {
+        // Step 1: XOR the two numbers to find differing bits
+        int xor = x ^ y;
+        
+        // Step 2: Count the set bits in the XOR result
+        int distance = 0;
+        while (xor != 0) {
+            // Brian Kernighan's Algorithm to clear the rightmost set bit
+            xor &= (xor - 1);
+            distance++;
+        }
+        
+        return distance;
+    }
+}
