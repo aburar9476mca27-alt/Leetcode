@@ -1,0 +1,26 @@
+import java.util.HashMap;
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int maxLength = 0;
+        // Map to store the last seen position of characters
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        // 'left' defines the start of the current window
+        for (int right = 0, left = 0; right < n; right++) {
+            char currentChar = s.charAt(right);
+
+            // If character exists in map, move 'left' to skip the duplicate
+            if (map.containsKey(currentChar)) {
+                left = Math.max(left, map.get(currentChar) + 1);
+            }
+            // Update/insert the character's latest position
+            map.put(currentChar, right);
+           
+            // Calculate current window size and update max
+            maxLength = Math.max(maxLength, right - left + 1);
+        }
+        return maxLength;
+    }
+}
