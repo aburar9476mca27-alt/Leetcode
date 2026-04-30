@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        // Special cases:
+        // 1. Negative numbers are not palindromes (due to the '-' sign).
+        // 2. If the last digit is 0, the first digit must also be 0 (only happens for 0).
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        int revertedNumber = 0;
+        // Reverse digits until we reach the middle of the number
+        while (x > revertedNumber) {
+            revertedNumber = revertedNumber * 10 + x % 10;
+            x /= 10;
+        }
+
+        // When the length is odd, we can get rid of the middle digit by revertedNumber/10
+        // e.g., for 121, at the end of the loop we have x = 1, revertedNumber = 12
+        return x == revertedNumber || x == revertedNumber / 10;
+    }
+}
