@@ -1,0 +1,20 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        // Start with the first day's price as the minimum seen so far
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        
+        for (int price : prices) {
+            // Update minPrice if the current price is lower
+            if (price < minPrice) {
+                minPrice = price;
+            } 
+            // Calculate potential profit if we sold today
+            else if (price - minPrice > maxProfit) {
+                maxProfit = price - minPrice;
+            }
+        }
+        
+        return maxProfit;
+    }
+}
