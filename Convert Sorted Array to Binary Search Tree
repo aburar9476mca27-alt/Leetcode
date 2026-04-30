@@ -1,0 +1,21 @@
+class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return constructBST(nums, 0, nums.length - 1);
+    }
+    
+    private TreeNode constructBST(int[] nums, int left, int right) {
+        if (left > right) return null;
+        
+        // Find the middle element
+        int mid = left + (right - left) / 2;
+        
+        // Create root
+        TreeNode node = new TreeNode(nums[mid]);
+        
+        // Build subtrees
+        node.left = constructBST(nums, left, mid - 1);
+        node.right = constructBST(nums, mid + 1, right);
+        
+        return node;
+    }
+}
