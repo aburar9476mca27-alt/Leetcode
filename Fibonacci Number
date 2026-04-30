@@ -1,0 +1,18 @@
+class Solution {
+    public int fib(int n) {
+        if (n <= 1) {
+            return n;
+        }
+
+        int a = 0; // F(n-2)
+        int b = 1; // F(n-1)
+        
+        for (int i = 2; i <= n; i++) {
+            int sum = a + b;
+            a = b;   // Move F(n-1) to F(n-2)
+            b = sum; // Update current sum
+        }
+        
+        return b;
+    }
+}
